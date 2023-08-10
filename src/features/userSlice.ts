@@ -4,7 +4,7 @@ import makeRequest from "../helpers/makeRequest";
 const initialUserState: IUser = {
   accToken: "",
   refreshToken: "",
-  experesIn: 0,
+  experesIn: "",
   nUser: 0,
   userBULSTAT: "",
   userEmail: "",
@@ -13,6 +13,7 @@ const initialUserState: IUser = {
   userLastName: "",
   userFirmName: "",
   userType: "",
+  error: "",
 };
 
 export const loginUser = createAsyncThunk(
@@ -27,7 +28,6 @@ export const loginUser = createAsyncThunk(
       },
     });
 
-    // console.log(response);
     return response;
   }
 );
@@ -40,13 +40,9 @@ export const userSlice = createSlice({
     builder.addCase(loginUser.fulfilled, (state, action) => {
       const data = action.payload;
 
-      //   console.log(data);
-
-      if (data.userType !== "") {
+      console.log(data);
+      if (!data.error) {
         // user is authenticated
-        state.accToken = data.accToken;
-        state.refreshToken = data.refreshToken;
-        state.experesIn = data.experesIn;
         state.nUser = data.nUser;
         state.userBULSTAT = data.userBULSTAT;
         state.userEmail = data.userEmail;
@@ -55,7 +51,11 @@ export const userSlice = createSlice({
         state.userLastName = data.userLastName;
         state.userFirmName = data.userFirmName;
         state.userType = data.userType;
+
         localStorage.setItem("isAuthenticated", "true");
+        localStorage.setItem("accToken", data.accToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        localStorage.setItem("expTime", data.experesIn);
       } else {
         // wrong credentials
         localStorage.setItem("isAuthenticated", "false");

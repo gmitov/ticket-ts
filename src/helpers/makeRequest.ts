@@ -14,10 +14,17 @@ interface RequestOptions {
 async function makeRequest<T>(options: RequestOptions): Promise<T> {
   const { method, body, url, config, auth } = options;
 
+  const accToken = localStorage.getItem("accToken");
+  const headers = {
+    "Content-Type": "text/plain",
+    Authorization: `Bearer ${accToken}`,
+  };
+
   try {
     const response: AxiosResponse<T> = await axios({
       method,
       url,
+      headers,
       data: body,
       ...config,
       auth,

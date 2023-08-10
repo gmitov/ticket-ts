@@ -1,19 +1,42 @@
-import LogIn from "./pages/LogIn";
+import Tickets from "./pages/Tickets";
+import RequireAuth from "./helpers/RequireAth";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-// import { RootState } from "./store/store";
-// import { useSelector } from "react-redux";
-// import { userSlice } from "./features/userSlice";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 function App() {
-  // const userState = useSelector((state: RootState) => state[userSlice.name]);
-  const isAuthenticated = localStorage.getItem("isAuthenticated");
-
   return (
     <BrowserRouter>
       <Routes>
-        {isAuthenticated ? null : <Route path="/" element={<LogIn />} />}
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <Home />
+            </RequireAuth>
+          }
+        />
+
+        <Route
+          path="/tickets"
+          element={
+            <RequireAuth>
+              <Tickets />
+            </RequireAuth>
+          }
+        />
+
+        <Route path="/ticket/:id" element={<></>} />
+
+        <Route
+          path="*"
+          element={
+            <RequireAuth>
+              <NotFound />
+            </RequireAuth>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -13,10 +13,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-import { useAppDispatch, RootState } from "../store/store";
-import { useSelector } from "react-redux";
-import { userSlice } from "../features/userSlice";
+import { useAppDispatch } from "../store/store";
 import { loginUser } from "../features/userSlice";
+
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props: any) {
   return (
@@ -38,8 +38,7 @@ function Copyright(props: any) {
 
 const LogIn: React.FC = () => {
   const dispatch = useAppDispatch();
-
-  const userState = useSelector((state: RootState) => state[userSlice.name]);
+  const navigate = useNavigate();
 
   const userNameRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -52,13 +51,17 @@ const LogIn: React.FC = () => {
 
       dispatch(loginUser({ userName: userName, password: password }))
         .then(() => {
-          // console.log(userState);
+          const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+          if (isAuthenticated === "true") {
+            navigate("/tickets");
+          }
         })
         .catch((error) => {
-          // console.error("Login failed:", error);
+          console.error("Login failed:", error);
         });
     } catch (error) {
-      // console.error("Error fetching posts:", error);
+      console.error("Error trying to log in:", error);
     }
   };
 
@@ -114,7 +117,7 @@ const LogIn: React.FC = () => {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
+            {/* <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
@@ -123,7 +126,7 @@ const LogIn: React.FC = () => {
               <Link href="#" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Box>
       </Box>

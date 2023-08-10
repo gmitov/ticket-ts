@@ -1,7 +1,7 @@
 interface IUser {
   accToken: string;
   refreshToken: string;
-  experesIn: number;
+  experesIn: string;
   nUser: number;
   userBULSTAT: string;
   userEmail: string;
@@ -10,4 +10,5 @@ interface IUser {
   userLastName: string;
   userFirmName: string;
   userType: string;
+  error: string;
 }
