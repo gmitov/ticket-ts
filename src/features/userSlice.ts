@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import makeRequest from "../helpers/makeRequest";
+import serverUrl from "../helpers/config";
 
 const initialUserState: IUser = {
   accToken: "",
@@ -21,7 +22,7 @@ export const loginUser = createAsyncThunk(
   async ({ userName, password }: { userName: string; password: string }) => {
     const response = await makeRequest<IUser>({
       method: "POST",
-      url: "http://82.118.229.216:46887/account/login",
+      url: serverUrl + "/account/login",
       auth: {
         username: userName,
         password: password,

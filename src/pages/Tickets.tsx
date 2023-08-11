@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 import makeRequest from "../helpers/makeRequest";
+import { setTickets } from "../features/ticketsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import serverUrl from "../helpers/config";
 
 const Tickets: React.FC = () => {
+  const tickets = useSelector((state: ITicketList) => state.tickets);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const requestData = {
       nUser: 1,
@@ -10,9 +16,9 @@ const Tickets: React.FC = () => {
     };
 
     const fetchTickets = () => {
-      const response = makeRequest({
+      const response = makeRequest<ITicketList>({
         method: "POST",
-        url: "http://82.118.229.216:46887/returnTickets",
+        url: serverUrl + "/returnTickets",
         body: requestData,
       });
 
@@ -20,11 +26,15 @@ const Tickets: React.FC = () => {
     };
 
     fetchTickets().then((result) => {
-      console.log(result);
+      dispatch(setTickets(result));
     });
   }, []);
 
-  return <div>tickets</div>;
+  const showNum = () => {
+    console.log(tickets);
+  };
+
+  return <div onClick={showNum}>tickets</div>;
 };
 
 export default Tickets;
