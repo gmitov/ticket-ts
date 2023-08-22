@@ -28,8 +28,6 @@ const ticketSlice = createSlice({
   initialState: initialTicketsState,
   reducers: {
     setTickets: (state, action: PayloadAction<ITicketList>) => {
-      // console.log(action.payload);
-
       action.payload.tickets.forEach((ticket: ITicket) => {
         state.tickets.push(ticket);
       });

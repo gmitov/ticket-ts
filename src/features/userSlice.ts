@@ -41,7 +41,6 @@ export const userSlice = createSlice({
     builder.addCase(loginUser.fulfilled, (state, action) => {
       const data = action.payload;
 
-      console.log(data);
       if (!data.error) {
         // user is authenticated
         state.nUser = data.nUser;
@@ -59,7 +58,7 @@ export const userSlice = createSlice({
         localStorage.setItem("expTime", data.experesIn);
       } else {
         // wrong credentials
-        localStorage.setItem("isAuthenticated", "false");
+        // localStorage.setItem("isAuthenticated", "false");
       }
     });
   },

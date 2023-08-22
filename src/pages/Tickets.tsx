@@ -1,18 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import makeRequest from "../helpers/makeRequest";
-import { setTickets } from "../features/ticketsSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import serverUrl from "../helpers/config";
+import TicketList from "../components/tickets/TicketsList";
+import TicketFilter from "../components/tickets/TicketFilter";
 
 const Tickets: React.FC = () => {
-  const tickets = useSelector((state: ITicketList) => state.tickets);
-  const dispatch = useDispatch();
+  const user = useSelector((state: any) => state.user);
+
+  const [tickets, setTickets] = useState<ITicket[]>();
+
+  const [filterValue, setFilterValue] = useState<number>(1);
+
+  const filterValueHandler = (newFilterValue: number) => {
+    setFilterValue(newFilterValue);
+  };
 
   useEffect(() => {
     const requestData = {
-      nUser: 1,
+      nUser: user.nUser,
       nPage: 1,
-      nFilterType: 2,
+      nFilterType: filterValue,
     };
 
     const fetchTickets = () => {
@@ -26,15 +34,20 @@ const Tickets: React.FC = () => {
     };
 
     fetchTickets().then((result) => {
-      dispatch(setTickets(result));
+      setTickets(result.tickets);
     });
-  }, []);
+  }, [filterValue]);
 
-  const showNum = () => {
-    console.log(tickets);
-  };
-
-  return <div onClick={showNum}>tickets</div>;
+  return (
+    <>
+      <TicketFilter filterValueHandler={filterValueHandler}></TicketFilter>
+      {tickets?.length! > 0 ? (
+        <TicketList tickets={tickets!} />
+      ) : (
+        <p>Няма намерени тикети от този вид.</p>
+      )}
+    </>
+  );
 };
 
 export default Tickets;

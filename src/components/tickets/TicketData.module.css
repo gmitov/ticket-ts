@@ -1,0 +1,14 @@
+.ticket-data-card {
+  background-color: rgb(236, 235, 235) !important;
+  margin-left: 15px;
+
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+}
+
+@media (max-width: 1156px) {
+  .ticket-data-card {
+    margin-bottom: 15px;
+  }
+}
