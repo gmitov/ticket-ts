@@ -9,8 +9,14 @@ import { returnStatusName } from "../../helpers/utils";
 
 import styles from "./TicketData.module.css";
 
-const TicketDataHeader: React.FC<any> = ({ ticket }) => {
-  console.log(ticket);
+const TicketDataHeader: React.FC<any> = ({ ticket, ticketChangeHandler }) => {
+  const acceptTicketHandler = () => {
+    ticketChangeHandler("ticketStatus", 2);
+  };
+
+  const refuseTicketHandler = () => {
+    ticketChangeHandler("ticketStatus", 13);
+  };
 
   return (
     <Card
@@ -82,8 +88,14 @@ const TicketDataHeader: React.FC<any> = ({ ticket }) => {
       </CardContent>
       {ticket?.ticketStatus! === 1 ? (
         <CardActions>
-          <Button variant="contained">Приеми</Button>
-          <Button variant="contained" color="error">
+          <Button variant="contained" onClick={acceptTicketHandler}>
+            Приеми
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={refuseTicketHandler}
+          >
             Откажи
           </Button>
         </CardActions>

@@ -55,3 +55,11 @@ interface ITicketData {
   ticketTaskLeader: string;
   ticketTeam: string;
 }
+
+interface IReport {
+  otchetCharacter: number;
+  otchetDate: string;
+  otchetID: string;
+  otchetText: string;
+  otchetTime: string;
+}

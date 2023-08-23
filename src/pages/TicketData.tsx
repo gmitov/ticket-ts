@@ -3,11 +3,6 @@ import { useParams } from "react-router-dom";
 import serverUrl from "../helpers/config";
 import makeRequest from "../helpers/makeRequest";
 
-// import Card from "@mui/material/Card";
-// import CardActions from "@mui/material/CardActions";
-// import CardContent from "@mui/material/CardContent";
-// import Typography from "@mui/material/Typography";
-
 import { useSelector } from "react-redux";
 import TicketDataHeader from "../components/tickets/TicketDataHeader";
 import TicketDataWorkers from "../components/tickets/TicketDataWorkers";
@@ -22,6 +17,34 @@ const TicketData: React.FC = () => {
   const [ticket, setTicket] = useState<ITicketData>();
 
   const { id } = useParams();
+
+  //---------
+  const updateTicketField = (
+    fieldName: keyof ITicketData,
+    value: ITicketData[keyof ITicketData]
+  ) => {
+    setTicket((prevTicket: any) => {
+      // ITicketData | undefined -> Maybe those types but still not work.
+      if (fieldName === "otcheti") {
+        const clonedOtcheti = [...prevTicket.otcheti]; // Clone the array
+        clonedOtcheti.push(value); // Modify the cloned array
+        return { ...prevTicket, [fieldName]: clonedOtcheti }; // Update the state with the new array
+      }
+
+      return {
+        ...(prevTicket as ITicketData),
+        [fieldName]: value,
+      };
+    });
+  };
+
+  const ticketChangeHandler = (
+    ticketKey: keyof ITicketData,
+    value: string | number
+  ) => {
+    updateTicketField(ticketKey, value);
+  };
+  //--------
 
   useEffect(() => {
     const requestData = {
@@ -46,11 +69,17 @@ const TicketData: React.FC = () => {
 
   return (
     <div className={styles["ticket-wrapper"]}>
-      <TicketDataHeader ticket={ticket} />
+      <TicketDataHeader
+        ticket={ticket}
+        ticketChangeHandler={ticketChangeHandler}
+      />
       {ticket?.ticketStatus! === 2 ? (
         <>
           <TicketDataWorkers ticket={ticket} />
-          <TicketDataInputs ticket={ticket} />
+          <TicketDataInputs
+            ticket={ticket}
+            ticketChangeHandler={ticketChangeHandler}
+          />
           <TicketDataControls />
         </>
       ) : (
