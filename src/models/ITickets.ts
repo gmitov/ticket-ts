@@ -23,6 +23,14 @@ interface ITicketList {
   message: string;
 }
 
+interface IReport {
+  otchetCharacter: number;
+  otchetDate: string;
+  otchetID: string;
+  otchetText: string;
+  otchetTime: string;
+}
+
 interface ITicketData {
   cobjTicket: number;
   cobjUniqueRow: number;
@@ -31,7 +39,7 @@ interface ITicketData {
   eik: string;
   helpers: [];
   nomID: number;
-  otcheti: [];
+  otcheti: IReport[];
   ticketBegDate: string;
   ticketEndDate: string;
   ticketLevel: number;

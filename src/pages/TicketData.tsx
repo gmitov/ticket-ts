@@ -44,6 +44,7 @@ const TicketData: React.FC = () => {
   ) => {
     updateTicketField(ticketKey, value);
   };
+
   //--------
 
   useEffect(() => {
@@ -64,6 +65,7 @@ const TicketData: React.FC = () => {
 
     fetchTickets().then((result) => {
       setTicket(result.ticket);
+      console.log(result.ticket);
     });
   }, []);
 
@@ -76,10 +78,7 @@ const TicketData: React.FC = () => {
       {ticket?.ticketStatus! === 2 ? (
         <>
           <TicketDataWorkers ticket={ticket} />
-          <TicketDataInputs
-            ticket={ticket}
-            ticketChangeHandler={ticketChangeHandler}
-          />
+          <TicketDataInputs ticket={ticket} />
           <TicketDataControls />
         </>
       ) : (
