@@ -4,7 +4,18 @@ import Card from "@mui/material/Card";
 import styles from "./TicketData.module.css";
 import ResponsiveDialog from "../../helpers/ResponsiveDialog";
 
-const TicketDataControls: React.FC<any> = ({ ticket, ticketChangeHandler }) => {
+type TicketDataControlsProps = {
+  ticket: ITicketData;
+  ticketChangeHandler: (
+    ticketKey: keyof ITicketData,
+    statusValue: number
+  ) => void;
+};
+
+const TicketDataControls: React.FC<TicketDataControlsProps> = ({
+  ticket,
+  ticketChangeHandler,
+}) => {
   const finishTicketHandler = () => {
     if (ticket.ticketLevel > 1) {
       ticketChangeHandler("ticketStatus", 3);

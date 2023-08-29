@@ -80,3 +80,7 @@ interface IWorkerReport {
   nHelperName: string;
   nHelperRow: number;
 }
+
+interface IFilter {
+  filterValue: number;
+}

@@ -5,7 +5,7 @@ const initialTicketFilterState = {
 };
 
 const ticketSlice = createSlice({
-  name: "tickets",
+  name: "ticketFilter",
   initialState: initialTicketFilterState,
   reducers: {
     setTicketFilter: (state, action: PayloadAction<number>) => {

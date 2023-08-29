@@ -39,7 +39,7 @@ const persistedTicketsSliceReducer = persistReducer(
 export const store = configureStore({
   reducer: {
     user: persistedUserSliceReducer,
-    tickets: persistedTicketsSliceReducer,
+    ticketFilter: persistedTicketsSliceReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

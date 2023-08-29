@@ -6,10 +6,20 @@ import TicketList from "../components/tickets/TicketsList";
 import TicketFilter from "../components/tickets/TicketFilter";
 import { Grid } from "@mui/material";
 
+type FilterType = {
+  ticketFilter: IFilter;
+};
+
+type UserType = {
+  user: IUser;
+};
+
 const Tickets: React.FC = () => {
   const [tickets, setTickets] = useState<ITicket[]>();
-  const user = useSelector((state: any) => state.user);
-  const ticketFilterValue = useSelector((state: any) => state.tickets);
+  const user = useSelector((state: UserType) => state.user);
+  const ticketFilterValue = useSelector(
+    (state: FilterType) => state.ticketFilter
+  );
 
   useEffect(() => {
     const requestData = {

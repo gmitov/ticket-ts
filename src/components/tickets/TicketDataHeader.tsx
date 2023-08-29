@@ -9,7 +9,18 @@ import { returnStatusName } from "../../helpers/utils";
 
 import styles from "./TicketData.module.css";
 
-const TicketDataHeader: React.FC<any> = ({ ticket, ticketChangeHandler }) => {
+type TicketDataHeaderProps = {
+  ticket: ITicketData;
+  ticketChangeHandler: (
+    ticketKey: keyof ITicketData,
+    statusValue: number
+  ) => void;
+};
+
+const TicketDataHeader: React.FC<TicketDataHeaderProps> = ({
+  ticket,
+  ticketChangeHandler,
+}) => {
   const acceptTicketHandler = () => {
     ticketChangeHandler("ticketStatus", 2);
   };

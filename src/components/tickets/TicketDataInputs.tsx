@@ -29,7 +29,11 @@ import styles from "./TicketData.module.css";
 import stylesInputs from "./TicketDataInputs.module.css";
 import ticketStyle from "./Ticket.module.css";
 
-const TicketDataInputs: React.FC<any> = ({ ticket }) => {
+type TicketDataInputsProps = {
+  ticket: ITicketData;
+};
+
+const TicketDataInputs: React.FC<TicketDataInputsProps> = ({ ticket }) => {
   const [reports, setReports] = useState<IReport[]>(ticket.otcheti);
 
   const [reportTypeInpt, setReportType] = useState<number>(0);

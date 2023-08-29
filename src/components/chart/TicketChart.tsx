@@ -8,8 +8,12 @@ import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 
+type UserType = {
+  user: IUser;
+};
+
 const TicketChart: React.FC = () => {
-  const user = useSelector((state: any) => state.user);
+  const user = useSelector((state: UserType) => state.user);
 
   const ticketBorderColor = ["rgb(173, 202, 214)"];
 

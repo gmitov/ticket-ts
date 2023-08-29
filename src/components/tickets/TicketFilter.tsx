@@ -14,9 +14,15 @@ import { setTicketFilter } from "../../features/ticketsSlice";
 
 import styles from "./TicketFilter.module.css";
 
+type FilterType = {
+  ticketFilter: IFilter;
+};
+
 const TicketFilter: React.FC = () => {
   const dispatch = useAppDispatch();
-  const ticketFilterValue = useSelector((state: any) => state.tickets);
+  const ticketFilterValue = useSelector(
+    (state: FilterType) => state.ticketFilter
+  );
 
   const handleFilterChange = (event: SelectChangeEvent<number>) => {
     const selectedValue = event.target.value as number;

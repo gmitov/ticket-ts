@@ -11,8 +11,16 @@ import TicketDataControls from "../components/tickets/TicketDataControls";
 
 import styles from "../components/tickets/TicketWrapper.module.css";
 
+type UserType = {
+  user: IUser;
+};
+
+type TicketType = {
+  ticket: ITicketData;
+};
+
 const TicketData: React.FC = () => {
-  const user = useSelector((state: any) => state.user);
+  const user = useSelector((state: UserType) => state.user);
 
   const [ticket, setTicket] = useState<ITicketData>();
 
@@ -24,7 +32,6 @@ const TicketData: React.FC = () => {
     value: ITicketData[keyof ITicketData]
   ) => {
     setTicket((prevTicket: any) => {
-      // ITicketData | undefined -> Maybe those types but still not work.
       if (fieldName === "otcheti") {
         const clonedOtcheti = [...prevTicket.otcheti]; // Clone the array
         clonedOtcheti.push(value); // Modify the cloned array
@@ -54,7 +61,7 @@ const TicketData: React.FC = () => {
     };
 
     const fetchTickets = () => {
-      const response = makeRequest<any>({
+      const response = makeRequest<TicketType>({
         method: "POST",
         url: serverUrl + "/ticket/getData",
         body: requestData,
@@ -72,15 +79,15 @@ const TicketData: React.FC = () => {
   return (
     <div className={styles["ticket-wrapper"]}>
       <TicketDataHeader
-        ticket={ticket}
+        ticket={ticket as ITicketData}
         ticketChangeHandler={ticketChangeHandler}
       />
       {ticket?.ticketStatus! === 2 ? (
         <>
           <TicketDataWorkers ticket={ticket?.helpers as IWorkerReport[]} />
-          <TicketDataInputs ticket={ticket} />
+          <TicketDataInputs ticket={ticket as ITicketData} />
           <TicketDataControls
-            ticket={ticket}
+            ticket={ticket as ITicketData}
             ticketChangeHandler={ticketChangeHandler}
           />
         </>
