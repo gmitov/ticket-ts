@@ -14,6 +14,7 @@ interface ResponsiveDialogProps {
   dialogContent: string;
   cancelButtonText: string;
   confirmButtonText: string;
+  color?: "secondary" | "error" | "warning" | "info" | "success";
   handleConfirm: () => void;
 }
 
@@ -23,6 +24,7 @@ const ResponsiveDialog: React.FC<ResponsiveDialogProps> = ({
   dialogContent,
   confirmButtonText,
   cancelButtonText,
+  color,
   handleConfirm,
 }) => {
   const [open, setOpen] = React.useState(false);
@@ -44,7 +46,7 @@ const ResponsiveDialog: React.FC<ResponsiveDialogProps> = ({
 
   return (
     <div>
-      <Button variant="contained" onClick={handleClickOpen}>
+      <Button variant="contained" color={color} onClick={handleClickOpen}>
         {openButtonText}
       </Button>
       <Dialog

@@ -12,3 +12,12 @@ interface IUser {
   userType: string;
   error: string;
 }
+
+interface IWorkerReport {
+  helperTask: string;
+  helperTaskEndDate: string;
+  helperTaskStatus: number;
+  helperTaskSumTime: string;
+  nHelperName: string;
+  nHelperRow: number;
+}

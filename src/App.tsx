@@ -19,11 +19,9 @@ function App() {
           path="/"
           element={
             <RequireAuth>
-              <>
-                <ResponsiveDrawer>
-                  <Home />
-                </ResponsiveDrawer>
-              </>
+              <ResponsiveDrawer>
+                <Home />
+              </ResponsiveDrawer>
             </RequireAuth>
           }
         />
@@ -34,11 +32,9 @@ function App() {
           path="/tickets"
           element={
             <RequireAuth>
-              <>
-                <ResponsiveDrawer>
-                  <Tickets />
-                </ResponsiveDrawer>
-              </>
+              <ResponsiveDrawer>
+                <Tickets />
+              </ResponsiveDrawer>
             </RequireAuth>
           }
         />
@@ -47,11 +43,9 @@ function App() {
           path="/statistics"
           element={
             <RequireAuth>
-              <>
-                <ResponsiveDrawer>
-                  <Statistics />
-                </ResponsiveDrawer>
-              </>
+              <ResponsiveDrawer>
+                <Statistics />
+              </ResponsiveDrawer>
             </RequireAuth>
           }
         />
@@ -60,11 +54,9 @@ function App() {
           path="/user-profile"
           element={
             <RequireAuth>
-              <>
-                <ResponsiveDrawer>
-                  <UserProfile />
-                </ResponsiveDrawer>
-              </>
+              <ResponsiveDrawer>
+                <UserProfile />
+              </ResponsiveDrawer>
             </RequireAuth>
           }
         />

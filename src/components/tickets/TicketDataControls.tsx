@@ -1,21 +1,46 @@
 import { CardActions } from "@mui/material";
 import Card from "@mui/material/Card";
-import Button from "@mui/material/Button";
 
 import styles from "./TicketData.module.css";
+import ResponsiveDialog from "../../helpers/ResponsiveDialog";
 
-const TicketDataControls: React.FC = () => {
+const TicketDataControls: React.FC<any> = ({ ticket, ticketChangeHandler }) => {
+  const finishTicketHandler = () => {
+    if (ticket.ticketLevel > 1) {
+      ticketChangeHandler("ticketStatus", 3);
+    } else {
+      ticketChangeHandler("ticketStatus", 11);
+    }
+  };
+
+  const cancelTicketHandler = () => {
+    ticketChangeHandler("ticketStatus", 13);
+  };
+
   return (
     <Card
       sx={{ minWidth: 275, maxWidth: 800 }}
       className={styles["ticket-data-card"]}
     >
       <CardActions>
-        <Button variant="contained">Приключи тикета</Button>
+        <ResponsiveDialog
+          openButtonText="Приключи тикета"
+          dialogTitle={""}
+          dialogContent={"Потвърдете ПРИКЛЮЧВАНЕТО на тикета."}
+          cancelButtonText={"Не"}
+          confirmButtonText={"Да"}
+          handleConfirm={finishTicketHandler}
+        />
 
-        <Button variant="contained" color="error">
-          Откажи тикета
-        </Button>
+        <ResponsiveDialog
+          openButtonText="Откажи тикета"
+          dialogTitle={""}
+          dialogContent={"Потвърдете ОТКАЗА на тикета."}
+          cancelButtonText={"Не"}
+          confirmButtonText={"Да"}
+          color="error"
+          handleConfirm={cancelTicketHandler}
+        />
       </CardActions>
     </Card>
   );

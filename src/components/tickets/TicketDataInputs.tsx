@@ -15,17 +15,24 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Grid from "@mui/material/Grid";
-
 import styles from "./TicketData.module.css";
 import stylesInputs from "./TicketDataInputs.module.css";
 import ResponsiveDialog from "../../helpers/ResponsiveDialog";
-
 import { showToast } from "../../helpers/showToast";
-
+import { SelectChangeEvent } from "@mui/material";
+import {
+  ExcelDateToJSDate,
+  formatDateTime,
+  getCurrentDateTime,
+} from "../../helpers/utils";
 import ticketStyle from "./Ticket.module.css";
 
 const TicketDataInputs: React.FC<any> = ({ ticket }) => {
   const [reports, setReports] = useState<IReport[]>(ticket.otcheti);
+  const [reportTypeInpt, setReportType] = useState<number>(0);
+  const [ticketStartDateTime, setTicketStartDateTime] = useState(
+    ExcelDateToJSDate(ticket.ticketStartWorkDate)
+  );
 
   const [hasWorkStarted, setHasWorkStarted] = useState(
     ticket?.ticketStartWorkDate === ""
@@ -37,6 +44,11 @@ const TicketDataInputs: React.FC<any> = ({ ticket }) => {
     setReports([...reports, newReport]);
   };
 
+  const handleFilterChange = (event: SelectChangeEvent<number>) => {
+    const selectedValue = event.target.value as number;
+    setReportType(selectedValue);
+  };
+
   const addWorkHandler = (reportType: string) => {
     let newId;
     if (reports.length === 0) {
@@ -46,16 +58,15 @@ const TicketDataInputs: React.FC<any> = ({ ticket }) => {
       newId++;
     }
 
-    // let otchetDate = "";
     let otchetCharacter = 0;
     let otchetText = "";
-    let otchetTime = "0 мин.";
 
     switch (reportType) {
       case "START_WORK":
         setHasWorkStarted(!hasWorkStarted);
         otchetText = "Започната работа";
         otchetCharacter = 3;
+        setTicketStartDateTime(getCurrentDateTime());
 
         showToast("success", "Успешно започната работа.");
 
@@ -65,6 +76,7 @@ const TicketDataInputs: React.FC<any> = ({ ticket }) => {
         setHasWorkStarted(!hasWorkStarted);
         otchetText = "Приключена работа";
         otchetCharacter = 4;
+        setTicketStartDateTime(null);
 
         showToast("success", "Успешно приключена работа.");
 
@@ -79,6 +91,7 @@ const TicketDataInputs: React.FC<any> = ({ ticket }) => {
         }
 
         showToast("success", "Отчета е записан успешно.");
+        otchetCharacter = reportTypeInpt;
 
         inputReportRef!.current!.value = "";
         break;
@@ -87,12 +100,33 @@ const TicketDataInputs: React.FC<any> = ({ ticket }) => {
         break;
     }
 
+    //-------
+    let today = getCurrentDateTime();
+    const todayString = formatDateTime(today);
+
+    let timeDifferenceInMinutes;
+    if (ticketStartDateTime) {
+      const timeDifferenceInMilliseconds =
+        today.getTime() - ticketStartDateTime.getTime();
+
+      timeDifferenceInMinutes = Math.floor(
+        timeDifferenceInMilliseconds / (1000 * 60)
+      );
+      if (timeDifferenceInMinutes > 480) {
+        timeDifferenceInMinutes = 480;
+      }
+    } else {
+      timeDifferenceInMinutes = 0;
+    }
+
+    //-------
+
     updateReportsHandler({
       otchetCharacter: otchetCharacter,
-      otchetDate: "21.08.2023 11:03",
+      otchetDate: todayString,
       otchetID: newId.toString(),
       otchetText: otchetText,
-      otchetTime: otchetTime,
+      otchetTime: timeDifferenceInMinutes.toString(),
     });
   };
 
@@ -171,7 +205,7 @@ const TicketDataInputs: React.FC<any> = ({ ticket }) => {
       <Divider />
       <CardContent>
         <Grid container spacing={1}>
-          <Grid item xs={6} md={5}>
+          <Grid item md={8}>
             <TextField
               id="outlined-multiline-static"
               label="Отчет"
@@ -188,7 +222,7 @@ const TicketDataInputs: React.FC<any> = ({ ticket }) => {
                 id="demo-simple-select"
                 label="Тип"
                 defaultValue={0}
-                // onChange={handleFilterChange}
+                onChange={handleFilterChange}
               >
                 <MenuItem value={0}>Описание</MenuItem>
                 <MenuItem value={1}>Важно</MenuItem>
@@ -196,7 +230,7 @@ const TicketDataInputs: React.FC<any> = ({ ticket }) => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={6} md={2}>
+          <Grid item xs={6} md={12}>
             <ResponsiveDialog
               openButtonText="Запиши"
               dialogTitle={""}

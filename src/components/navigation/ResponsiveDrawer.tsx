@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
-import HomeIcon from "@mui/icons-material/Home";
+// import HomeIcon from "@mui/icons-material/Home";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 
 import styles from "./ResponsiveDrawer.module.css";
@@ -38,7 +38,7 @@ export default function ResponsiveDrawer(props: any) {
       <Toolbar />
       <Divider />
       <List>
-        <Link to="/" className={styles["no-link-underline"]}>
+        {/* <Link to="/" className={styles["no-link-underline"]}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -47,9 +47,13 @@ export default function ResponsiveDrawer(props: any) {
               <ListItemText primary={"Начало"} />
             </ListItemButton>
           </ListItem>
-        </Link>
+        </Link> */}
 
-        <Link to="/tickets" className={styles["no-link-underline"]}>
+        <Link
+          to="/tickets"
+          className={styles["no-link-underline"]}
+          onClick={handleDrawerToggle}
+        >
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -60,7 +64,11 @@ export default function ResponsiveDrawer(props: any) {
           </ListItem>
         </Link>
 
-        <Link to="/statistics" className={styles["no-link-underline"]}>
+        <Link
+          to="/statistics"
+          className={styles["no-link-underline"]}
+          onClick={handleDrawerToggle}
+        >
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>

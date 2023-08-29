@@ -79,7 +79,10 @@ const TicketData: React.FC = () => {
         <>
           <TicketDataWorkers ticket={ticket} />
           <TicketDataInputs ticket={ticket} />
-          <TicketDataControls />
+          <TicketDataControls
+            ticket={ticket}
+            ticketChangeHandler={ticketChangeHandler}
+          />
         </>
       ) : (
         <></>
