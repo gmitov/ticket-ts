@@ -15,8 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Grid from "@mui/material/Grid";
-import styles from "./TicketData.module.css";
-import stylesInputs from "./TicketDataInputs.module.css";
+
 import ResponsiveDialog from "../../helpers/ResponsiveDialog";
 import { showToast } from "../../helpers/showToast";
 import { SelectChangeEvent } from "@mui/material";
@@ -25,10 +24,14 @@ import {
   formatDateTime,
   getCurrentDateTime,
 } from "../../helpers/utils";
+
+import styles from "./TicketData.module.css";
+import stylesInputs from "./TicketDataInputs.module.css";
 import ticketStyle from "./Ticket.module.css";
 
 const TicketDataInputs: React.FC<any> = ({ ticket }) => {
   const [reports, setReports] = useState<IReport[]>(ticket.otcheti);
+
   const [reportTypeInpt, setReportType] = useState<number>(0);
   const [ticketStartDateTime, setTicketStartDateTime] = useState(
     ExcelDateToJSDate(ticket.ticketStartWorkDate)
@@ -112,13 +115,13 @@ const TicketDataInputs: React.FC<any> = ({ ticket }) => {
       timeDifferenceInMinutes = Math.floor(
         timeDifferenceInMilliseconds / (1000 * 60)
       );
+
       if (timeDifferenceInMinutes > 480) {
         timeDifferenceInMinutes = 480;
       }
     } else {
       timeDifferenceInMinutes = 0;
     }
-
     //-------
 
     updateReportsHandler({
@@ -160,7 +163,7 @@ const TicketDataInputs: React.FC<any> = ({ ticket }) => {
                       <strong>{otchet.otchetDate}</strong>
                     </Typography>
 
-                    {otchet.otchetTime !== "0 мин." ? (
+                    {!["0 мин.", "0"].includes(otchet.otchetTime) ? (
                       <Typography>
                         работено време: <strong>{otchet.otchetTime}</strong>
                       </Typography>
@@ -205,13 +208,14 @@ const TicketDataInputs: React.FC<any> = ({ ticket }) => {
       <Divider />
       <CardContent>
         <Grid container spacing={1}>
-          <Grid item xs={12} md={8} className={styles["memo"]}>
+          <Grid item xs={12} md={8}>
             <TextField
               id="outlined-multiline-static"
               label="Отчет"
               multiline
               rows={4}
               inputRef={inputReportRef}
+              className={stylesInputs["memo"]}
             />
           </Grid>
           <Grid item xs={12} md={4}>

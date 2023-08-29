@@ -77,7 +77,7 @@ const TicketData: React.FC = () => {
       />
       {ticket?.ticketStatus! === 2 ? (
         <>
-          <TicketDataWorkers ticket={ticket} />
+          <TicketDataWorkers ticket={ticket?.helpers as IWorkerReport[]} />
           <TicketDataInputs ticket={ticket} />
           <TicketDataControls
             ticket={ticket}

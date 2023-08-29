@@ -68,5 +68,5 @@ export const formatDateTime = (date: Date) => {
     minutes = "0" + minutes;
   }
 
-  return dd + "." + mm + "." + yyyy + " / " + hours + ":" + minutes;
+  return dd + "." + mm + "." + yyyy + " " + hours + ":" + minutes;
 };

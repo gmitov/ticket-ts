@@ -7,21 +7,15 @@ import TicketFilter from "../components/tickets/TicketFilter";
 import { Grid } from "@mui/material";
 
 const Tickets: React.FC = () => {
-  const user = useSelector((state: any) => state.user);
-
   const [tickets, setTickets] = useState<ITicket[]>();
-
-  const [filterValue, setFilterValue] = useState<number>(1);
-
-  const filterValueHandler = (newFilterValue: number) => {
-    setFilterValue(newFilterValue);
-  };
+  const user = useSelector((state: any) => state.user);
+  const ticketFilterValue = useSelector((state: any) => state.tickets);
 
   useEffect(() => {
     const requestData = {
       nUser: user.nUser,
       nPage: 1,
-      nFilterType: filterValue,
+      nFilterType: ticketFilterValue.filterValue,
     };
 
     const fetchTickets = () => {
@@ -37,11 +31,11 @@ const Tickets: React.FC = () => {
     fetchTickets().then((result) => {
       setTickets(result.tickets);
     });
-  }, [filterValue]);
+  }, [ticketFilterValue]);
 
   return (
     <>
-      <TicketFilter filterValueHandler={filterValueHandler}></TicketFilter>
+      <TicketFilter></TicketFilter>
 
       <Grid container>
         {tickets?.length! > 0 ? (

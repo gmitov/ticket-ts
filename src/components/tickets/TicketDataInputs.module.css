@@ -3,6 +3,9 @@
     overflow-y: scroll;
 }
 
+.memo {
+    width: 100%;
+}
 
 @media (max-width: 800px) {
     .memo {

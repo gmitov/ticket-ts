@@ -4,7 +4,6 @@ import RequireAuth from "./helpers/RequireAth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-// import PrimaryAppBar from "./components/PrimaryAppBar";
 import ResponsiveDrawer from "./components/navigation/ResponsiveDrawer";
 import TicketData from "./pages/TicketData";
 import UserProfile from "./pages/UserProfile";

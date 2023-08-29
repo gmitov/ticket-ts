@@ -2,24 +2,25 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { SelectChangeEvent } from "@mui/material";
+import { useSelector } from "react-redux";
+import { useAppDispatch } from "../../store/store";
+import { setTicketFilter } from "../../features/ticketsSlice";
 
 import styles from "./TicketFilter.module.css";
 
-interface FilterHandler {
-  filterValueHandler: (newFilterValue: number) => void;
-}
+const TicketFilter: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const ticketFilterValue = useSelector((state: any) => state.tickets);
 
-const TicketFilter: React.FC<FilterHandler> = ({ filterValueHandler }) => {
   const handleFilterChange = (event: SelectChangeEvent<number>) => {
     const selectedValue = event.target.value as number;
-    filterValueHandler(selectedValue);
+    dispatch(setTicketFilter(selectedValue));
   };
 
   return (
@@ -34,6 +35,7 @@ const TicketFilter: React.FC<FilterHandler> = ({ filterValueHandler }) => {
                 id="demo-simple-select"
                 label="Тип"
                 defaultValue={1}
+                value={ticketFilterValue.filterValue}
                 onChange={handleFilterChange}
               >
                 <MenuItem value={1}>Очаква приемане</MenuItem>

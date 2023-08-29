@@ -15,6 +15,7 @@ async function makeRequest<T>(options: RequestOptions): Promise<T> {
   const { method, body, url, config, auth } = options;
 
   const accToken = localStorage.getItem("accToken");
+
   let headers = {};
   if (accToken !== null) {
     headers = {
@@ -32,6 +33,8 @@ async function makeRequest<T>(options: RequestOptions): Promise<T> {
       ...config,
       auth,
     });
+
+    // Ако няма сесия да се провери да махне LS
 
     return response.data;
   } catch (error) {

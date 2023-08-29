@@ -1,4 +1,3 @@
-// import LogIn from "../pages/LogIn";
 import { Navigate } from "react-router-dom";
 
 const RequireAuth: React.FC<{ children: React.ReactElement }> = ({

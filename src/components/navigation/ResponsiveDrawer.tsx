@@ -18,7 +18,6 @@ import { Link } from "react-router-dom";
 
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
-// import HomeIcon from "@mui/icons-material/Home";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 
 import styles from "./ResponsiveDrawer.module.css";

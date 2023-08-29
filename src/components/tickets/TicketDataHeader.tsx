@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Divider } from "@mui/material";
-import Button from "@mui/material/Button";
+import ResponsiveDialog from "../../helpers/ResponsiveDialog";
 
 import { returnStatusName } from "../../helpers/utils";
 
@@ -88,16 +88,25 @@ const TicketDataHeader: React.FC<any> = ({ ticket, ticketChangeHandler }) => {
       </CardContent>
       {ticket?.ticketStatus! === 1 ? (
         <CardActions>
-          <Button variant="contained" onClick={acceptTicketHandler}>
-            Приеми
-          </Button>
-          <Button
-            variant="contained"
+          <ResponsiveDialog
+            openButtonText="Прекрати"
+            dialogTitle={""}
+            dialogContent={"Потвърдете ПРИЕМАНЕТО на тикета."}
+            cancelButtonText={"Не"}
+            confirmButtonText={"Да"}
+            color="success"
+            handleConfirm={acceptTicketHandler}
+          />
+
+          <ResponsiveDialog
+            openButtonText="Прекрати"
+            dialogTitle={""}
+            dialogContent={"Потвърдете ПРЕКРАТЯВАНЕТО на тикета."}
+            cancelButtonText={"Не"}
+            confirmButtonText={"Да"}
             color="error"
-            onClick={refuseTicketHandler}
-          >
-            Откажи
-          </Button>
+            handleConfirm={refuseTicketHandler}
+          />
         </CardActions>
       ) : (
         <></>

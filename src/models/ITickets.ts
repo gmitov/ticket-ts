@@ -37,7 +37,7 @@ interface ITicketData {
   contragent: string;
   dateCreated: string;
   eik: string;
-  helpers: [];
+  helpers: IWorkerReport[];
   nomID: number;
   otcheti: IReport[];
   ticketBegDate: string;
@@ -70,4 +70,13 @@ interface IReport {
   otchetID: string;
   otchetText: string;
   otchetTime: string;
+}
+
+interface IWorkerReport {
+  helperTask: string;
+  helperTaskEndDate: string;
+  helperTaskStatus: number;
+  helperTaskSumTime: string;
+  nHelperName: string;
+  nHelperRow: number;
 }
