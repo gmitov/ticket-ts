@@ -20,7 +20,6 @@ import { returnStatusName } from "../../helpers/utils";
 
 const TicketDataWorkers: React.FC<any> = ({ ticket }) => {
   const [workersReports, setWorkersReports] = useState(ticket.helpers);
-  console.log(workersReports);
 
   if (ticket?.helpers.length > 0) {
     return (

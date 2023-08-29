@@ -29,6 +29,7 @@ const TicketDataControls: React.FC<any> = ({ ticket, ticketChangeHandler }) => {
           dialogContent={"Потвърдете ПРИКЛЮЧВАНЕТО на тикета."}
           cancelButtonText={"Не"}
           confirmButtonText={"Да"}
+          color="success"
           handleConfirm={finishTicketHandler}
         />
 

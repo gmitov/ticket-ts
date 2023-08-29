@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import serverUrl from "../helpers/config";
 import TicketList from "../components/tickets/TicketsList";
 import TicketFilter from "../components/tickets/TicketFilter";
+import { Grid } from "@mui/material";
 
 const Tickets: React.FC = () => {
   const user = useSelector((state: any) => state.user);
@@ -41,11 +42,14 @@ const Tickets: React.FC = () => {
   return (
     <>
       <TicketFilter filterValueHandler={filterValueHandler}></TicketFilter>
-      {tickets?.length! > 0 ? (
-        <TicketList tickets={tickets!} />
-      ) : (
-        <p>Няма намерени тикети от този вид.</p>
-      )}
+
+      <Grid container>
+        {tickets?.length! > 0 ? (
+          <TicketList tickets={tickets!} />
+        ) : (
+          <p>Няма намерени тикети от този вид.</p>
+        )}
+      </Grid>
     </>
   );
 };

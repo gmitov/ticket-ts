@@ -28,8 +28,8 @@ const ResponsiveDialog: React.FC<ResponsiveDialogProps> = ({
   handleConfirm,
 }) => {
   const [open, setOpen] = React.useState(false);
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+  // const theme = useTheme();
+  // const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -50,7 +50,7 @@ const ResponsiveDialog: React.FC<ResponsiveDialogProps> = ({
         {openButtonText}
       </Button>
       <Dialog
-        fullScreen={fullScreen}
+        // fullScreen={fullScreen}
         open={open}
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"

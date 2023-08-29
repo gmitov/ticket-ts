@@ -4,6 +4,8 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
+import { Grid } from "@mui/material";
+
 import styles from "./Ticket.module.css";
 import { Link } from "react-router-dom";
 
@@ -46,34 +48,40 @@ const Ticket: React.FC<TicketProps> = ({ ticket }) => {
   }
 
   return (
-    <Card
-      sx={{ minWidth: 275, maxWidth: 600 }}
-      className={`${styles.ticket} ${styleTicketType}`}
-    >
-      <CardContent className={`${styleTicketType} ${styles["ticket-header"]}`}>
-        <Typography variant="h5" component="div">
-          {ticket.ticketTask}
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {ticket.contragent}
-        </Typography>
-        <Typography>
-          статус: <strong>{returnStatusName(ticket.ticketStatus)}</strong>
-        </Typography>
-        <Typography variant="body2">от дата: {ticket.ticketBegDate}</Typography>
-
-        {ticket.ticketEndDate ? (
-          <Typography variant="body2">
-            краен срок: {ticket.ticketEndDate}
+    <Grid container md={4} xs={12}>
+      <Card
+        sx={{ minWidth: 300, maxWidth: 600 }}
+        className={`${styles.ticket} ${styleTicketType}`}
+      >
+        <CardContent
+          className={`${styleTicketType} ${styles["ticket-header"]}`}
+        >
+          <Typography variant="h5" component="div">
+            {ticket.ticketTask}
           </Typography>
-        ) : null}
-      </CardContent>
-      <CardActions>
-        <Link to={"/ticket/" + ticket.cobjTicket}>
-          <Button size="small">Подробно</Button>
-        </Link>
-      </CardActions>
-    </Card>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            {ticket.contragent}
+          </Typography>
+          <Typography>
+            статус: <strong>{returnStatusName(ticket.ticketStatus)}</strong>
+          </Typography>
+          <Typography variant="body2">
+            от дата: {ticket.ticketBegDate}
+          </Typography>
+
+          {ticket.ticketEndDate ? (
+            <Typography variant="body2">
+              краен срок: {ticket.ticketEndDate}
+            </Typography>
+          ) : null}
+        </CardContent>
+        <CardActions>
+          <Link to={"/ticket/" + ticket.cobjTicket}>
+            <Button size="small">Подробно</Button>
+          </Link>
+        </CardActions>
+      </Card>
+    </Grid>
   );
 };
 

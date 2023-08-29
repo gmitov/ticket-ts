@@ -79,7 +79,11 @@ export default function ResponsiveDrawer(props: any) {
           </ListItem>
         </Link>
 
-        <Link to="/user-profile" className={styles["no-link-underline"]}>
+        <Link
+          to="/user-profile"
+          className={styles["no-link-underline"]}
+          onClick={handleDrawerToggle}
+        >
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>

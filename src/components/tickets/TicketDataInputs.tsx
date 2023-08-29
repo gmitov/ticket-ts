@@ -205,7 +205,7 @@ const TicketDataInputs: React.FC<any> = ({ ticket }) => {
       <Divider />
       <CardContent>
         <Grid container spacing={1}>
-          <Grid item md={8}>
+          <Grid item xs={12} md={8} className={styles["memo"]}>
             <TextField
               id="outlined-multiline-static"
               label="Отчет"
@@ -214,7 +214,7 @@ const TicketDataInputs: React.FC<any> = ({ ticket }) => {
               inputRef={inputReportRef}
             />
           </Grid>
-          <Grid item xs={6} md={4}>
+          <Grid item xs={12} md={4}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Тип</InputLabel>
               <Select
