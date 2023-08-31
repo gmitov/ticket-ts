@@ -48,9 +48,9 @@ const Ticket: React.FC<TicketProps> = ({ ticket }) => {
   }
 
   return (
-    <Grid container md={4} xs={12} item={true}>
+    <Grid container md={6} xs={12} item={true}>
       <Card
-        sx={{ minWidth: 300, maxWidth: 600 }}
+        sx={{ minWidth: 275, maxWidth: 1200 }}
         className={`${styles.ticket} ${styleTicketType}`}
       >
         <CardContent

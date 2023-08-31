@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialTicketFilterState = {
   filterValue: 1,
+  activePage: 1,
 };
 
 const ticketSlice = createSlice({
@@ -11,9 +12,12 @@ const ticketSlice = createSlice({
     setTicketFilter: (state, action: PayloadAction<number>) => {
       state.filterValue = action.payload;
     },
+    setActivePage: (state, action: PayloadAction<number>) => {
+      state.activePage = action.payload;
+    },
   },
 });
 
-export const { setTicketFilter } = ticketSlice.actions;
+export const { setTicketFilter, setActivePage } = ticketSlice.actions;
 
 export default ticketSlice.reducer;

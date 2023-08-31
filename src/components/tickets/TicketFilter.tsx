@@ -10,7 +10,7 @@ import Select from "@mui/material/Select";
 import { SelectChangeEvent } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../store/store";
-import { setTicketFilter } from "../../features/ticketsSlice";
+import { setTicketFilter, setActivePage } from "../../features/ticketsSlice";
 
 import styles from "./TicketFilter.module.css";
 
@@ -26,6 +26,7 @@ const TicketFilter: React.FC = () => {
 
   const handleFilterChange = (event: SelectChangeEvent<number>) => {
     const selectedValue = event.target.value as number;
+    dispatch(setActivePage(1));
     dispatch(setTicketFilter(selectedValue));
   };
 

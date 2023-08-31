@@ -47,11 +47,10 @@ const TicketData: React.FC = () => {
 
   const ticketChangeHandler = (
     ticketKey: keyof ITicketData,
-    value: string | number
+    value: ITicketData[keyof ITicketData]
   ) => {
     updateTicketField(ticketKey, value);
   };
-
   //--------
 
   useEffect(() => {
