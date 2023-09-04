@@ -19,10 +19,43 @@ type TicketType = {
   ticket: ITicketData;
 };
 
+const ticketDefaultState = {
+  cobjTicket: 0,
+  cobjUniqueRow: 0,
+  contragent: "",
+  dateCreated: "",
+  eik: "",
+  helpers: [],
+  nomID: 0,
+  otcheti: [],
+  ticketBegDate: "",
+  ticketEndDate: "",
+  ticketLevel: 0,
+  ticketPMSContactPerson: "",
+  ticketPMSContactPhone: "",
+  ticketPMSDeinostManager: "",
+  ticketPMSDogName: "",
+  ticketPMSObject: "",
+  ticketPMSPlaceLocation: "",
+  ticketPMSPlannedHours: 0,
+  ticketPMSPriority: 0,
+  ticketPMSProjName: "",
+  ticketPMSTOName: "",
+  ticketPMSTaskName: "",
+  ticketPMSTrader: "",
+  ticketStartWorkDate: "",
+  ticketStatus: 0,
+  ticketStatusFinishedDate: 0,
+  ticketStatusFinishedFrom: "",
+  ticketTask: "",
+  ticketTaskLeader: "",
+  ticketTeam: "",
+};
+
 const TicketData: React.FC = () => {
   const user = useSelector((state: UserType) => state.user);
 
-  const [ticket, setTicket] = useState<ITicketData>();
+  const [ticket, setTicket] = useState<ITicketData>(ticketDefaultState);
 
   const { id } = useParams();
 
@@ -31,18 +64,21 @@ const TicketData: React.FC = () => {
     fieldName: keyof ITicketData,
     value: ITicketData[keyof ITicketData]
   ) => {
-    setTicket((prevTicket: any) => {
-      if (fieldName === "otcheti") {
-        const clonedOtcheti = [...prevTicket.otcheti]; // Clone the array
-        clonedOtcheti.push(value); // Modify the cloned array
-        return { ...prevTicket, [fieldName]: clonedOtcheti }; // Update the state with the new array
-      }
+    setTicket(
+      (prevTicket: ITicketData) => ({ ...prevTicket, [fieldName]: value })
+      // {
+      //   // if (fieldName === "otcheti") {
+      //   //   const clonedOtcheti = [...prevTicket.otcheti]; // Clone the array
+      //   //   clonedOtcheti.push(value); // Modify the cloned array
+      //   //   return { ...prevTicket, [fieldName]: clonedOtcheti }; // Update the state with the new array
+      //   // }
 
-      return {
-        ...(prevTicket as ITicketData),
-        [fieldName]: value,
-      };
-    });
+      //   return {
+      //     ...prevTicket,
+      //     [fieldName]: value,
+      //   };
+      // }
+    );
   };
 
   const ticketChangeHandler = (
@@ -78,15 +114,15 @@ const TicketData: React.FC = () => {
   return (
     <div className={styles["ticket-wrapper"]}>
       <TicketDataHeader
-        ticket={ticket as ITicketData}
+        ticket={ticket}
         ticketChangeHandler={ticketChangeHandler}
       />
-      {ticket?.ticketStatus! === 2 ? (
+      {ticket?.ticketStatus! === 2 && ticket?.helpers ? (
         <>
-          <TicketDataWorkers ticket={ticket?.helpers as IWorkerReport[]} />
-          <TicketDataInputs ticket={ticket as ITicketData} />
+          <TicketDataWorkers ticket={ticket.helpers} />
+          <TicketDataInputs ticket={ticket} />
           <TicketDataControls
-            ticket={ticket as ITicketData}
+            ticket={ticket}
             ticketChangeHandler={ticketChangeHandler}
           />
         </>

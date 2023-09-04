@@ -136,6 +136,7 @@ export default function ResponsiveDrawer(props: any) {
           onClose={handleDrawerToggle}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
+            disableScrollLock: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },

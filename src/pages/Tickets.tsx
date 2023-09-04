@@ -46,6 +46,8 @@ const Tickets: React.FC = memo(() => {
       nFilterType: ticketFilterValue.filterValue,
     };
 
+    console.log("use effect");
+
     const fetchTickets = () => {
       setLoading(true);
 
@@ -55,18 +57,19 @@ const Tickets: React.FC = memo(() => {
         body: requestData,
       });
 
+      console.log("fetch");
+
       return response;
     };
 
     fetchTickets().then((result) => {
-      // setTimeout(() => {
-      setTickets(result.tickets);
-      setTicketsCount(result.brTickets);
+      setTimeout(() => {
+        console.log(result);
+        setTickets(result.tickets);
+        setTicketsCount(result.brTickets);
 
-      console.log(result);
-
-      setLoading(false);
-      // }, 0);
+        setLoading(false);
+      }, 1000);
     });
   }, [ticketFilterValue, activaPage]);
 
