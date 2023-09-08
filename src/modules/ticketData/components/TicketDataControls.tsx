@@ -2,7 +2,7 @@ import { CardActions } from "@mui/material";
 import Card from "@mui/material/Card";
 
 import styles from "./TicketData.module.css";
-import ResponsiveDialog from "../../helpers/ResponsiveDialog";
+import ResponsiveDialog from "../../../utils/ResponsiveDialog";
 
 type TicketDataControlsProps = {
   ticket: ITicketData;

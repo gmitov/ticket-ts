@@ -9,8 +9,8 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { SelectChangeEvent } from "@mui/material";
 import { useSelector } from "react-redux";
-import { useAppDispatch } from "../../store/store";
-import { setTicketFilter, setActivePage } from "../../features/ticketsSlice";
+import { useAppDispatch } from "../../../store/store";
+import { setTicketFilter, setActivePage } from "../../../features/ticketsSlice";
 
 import styles from "./TicketFilter.module.css";
 

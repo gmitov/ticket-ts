@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import makeRequest from "../helpers/makeRequest";
-import serverUrl from "../helpers/config";
+import makeRequest from "../utils/makeRequest";
+import serverUrl from "../utils/config";
 
 const initialUserState: IUser = {
   accToken: "",

@@ -3,9 +3,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Divider } from "@mui/material";
-import ResponsiveDialog from "../../helpers/ResponsiveDialog";
+import ResponsiveDialog from "../../../utils/ResponsiveDialog";
 
-import { returnStatusName } from "../../helpers/utils";
+import { returnStatusName } from "../../../utils/utils";
 
 import styles from "./TicketData.module.css";
 
@@ -100,7 +100,7 @@ const TicketDataHeader: React.FC<TicketDataHeaderProps> = ({
       {ticket?.ticketStatus! === 1 ? (
         <CardActions>
           <ResponsiveDialog
-            openButtonText="Прекрати"
+            openButtonText="Приеми"
             dialogTitle={""}
             dialogContent={"Потвърдете ПРИЕМАНЕТО на тикета."}
             cancelButtonText={"Не"}

@@ -1,9 +1,9 @@
 import { useEffect, useState, memo } from "react";
-import makeRequest from "../helpers/makeRequest";
+import makeRequest from "../utils/makeRequest";
 import { useSelector } from "react-redux";
-import serverUrl from "../helpers/config";
-import TicketList from "../components/tickets/TicketsList";
-import TicketFilter from "../components/tickets/TicketFilter";
+import serverUrl from "../utils/config";
+import TicketList from "../modules/tickets/components/TicketsList";
+import TicketFilter from "../modules/tickets/components/TicketFilter";
 import { Grid } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
@@ -64,7 +64,6 @@ const Tickets: React.FC = memo(() => {
 
     fetchTickets().then((result) => {
       setTimeout(() => {
-        console.log(result);
         setTickets(result.tickets);
         setTicketsCount(result.brTickets);
 

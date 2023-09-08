@@ -1,14 +1,15 @@
-import Tickets from "./pages/Tickets";
-import RequireAuth from "./helpers/RequireAth";
+import RequireAuth from "./utils/RequireAth";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ResponsiveDrawer from "./components/navigation/ResponsiveDrawer";
-import TicketData from "./pages/TicketData";
 import UserProfile from "./pages/UserProfile";
 import Statistics from "./pages/Statistics";
 import LogIn from "./pages/LogIn";
+
+import { TicketsPage } from "./modules/tickets";
+import { TicketDataPage } from "./modules/ticketData";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           element={
             <RequireAuth>
               <ResponsiveDrawer>
-                <Tickets />
+                <TicketsPage />
               </ResponsiveDrawer>
             </RequireAuth>
           }
@@ -65,7 +66,7 @@ function App() {
           element={
             <RequireAuth>
               <ResponsiveDrawer>
-                <TicketData />
+                <TicketDataPage />
               </ResponsiveDrawer>
             </RequireAuth>
           }

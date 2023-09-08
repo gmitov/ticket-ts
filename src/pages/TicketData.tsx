@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import serverUrl from "../helpers/config";
-import makeRequest from "../helpers/makeRequest";
+import serverUrl from "../utils/config";
+import makeRequest from "../utils/makeRequest";
 
 import { useSelector } from "react-redux";
-import TicketDataHeader from "../components/tickets/TicketDataHeader";
-import TicketDataWorkers from "../components/tickets/TicketDataWorkers";
-import TicketDataInputs from "../components/tickets/TicketDataInputs";
-import TicketDataControls from "../components/tickets/TicketDataControls";
+// import TicketDataHeader from "../modules/statistics/components/TicketDataHeader";
+// import TicketDataWorkers from "../modules/statistics/components/TicketDataWorkers";
+// import TicketDataInputs from "../modules/statistics/components/TicketDataInputs";
+// import TicketDataControls from "../modules/statistics/components/TicketDataControls";
 
 import styles from "../components/tickets/TicketWrapper.module.css";
 
@@ -66,6 +66,7 @@ const TicketData: React.FC = () => {
   ) => {
     setTicket(
       (prevTicket: ITicketData) => ({ ...prevTicket, [fieldName]: value })
+
       // {
       //   // if (fieldName === "otcheti") {
       //   //   const clonedOtcheti = [...prevTicket.otcheti]; // Clone the array
@@ -112,24 +113,25 @@ const TicketData: React.FC = () => {
   }, []);
 
   return (
-    <div className={styles["ticket-wrapper"]}>
-      <TicketDataHeader
-        ticket={ticket}
-        ticketChangeHandler={ticketChangeHandler}
-      />
-      {ticket?.ticketStatus! === 2 && ticket?.helpers ? (
-        <>
-          <TicketDataWorkers ticket={ticket.helpers} />
-          <TicketDataInputs ticket={ticket} />
-          <TicketDataControls
-            ticket={ticket}
-            ticketChangeHandler={ticketChangeHandler}
-          />
-        </>
-      ) : (
-        <></>
-      )}
-    </div>
+    <></>
+    // <div className={styles["ticket-wrapper"]}>
+    //   <TicketDataHeader
+    //     ticket={ticket}
+    //     ticketChangeHandler={ticketChangeHandler}
+    //   />
+    //   {ticket?.ticketStatus! === 2 && ticket?.helpers ? (
+    //     <>
+    //       <TicketDataWorkers ticket={ticket.helpers} />
+    //       <TicketDataInputs ticket={ticket} />
+    //       <TicketDataControls
+    //         ticket={ticket}
+    //         ticketChangeHandler={ticketChangeHandler}
+    //       />
+    //     </>
+    //   ) : (
+    //     <></>
+    //   )}
+    // </div>
   );
 };
 

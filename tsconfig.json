@@ -18,8 +18,9 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src/**/*.d.ts", "src/**/*.tsx", "src/**/*.ts"], //["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

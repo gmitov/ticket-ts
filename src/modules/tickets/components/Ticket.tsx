@@ -9,7 +9,7 @@ import { Grid } from "@mui/material";
 import styles from "./Ticket.module.css";
 import { Link } from "react-router-dom";
 
-import { returnStatusName } from "../../helpers/utils";
+import { returnStatusName } from "../../../utils/utils";
 
 interface TicketProps {
   ticket: ITicket;

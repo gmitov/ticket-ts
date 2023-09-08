@@ -1,23 +1,52 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import makeRequest from "../../helpers/makeRequest";
-import serverUrl from "../../helpers/config";
 
-import { Bar } from "react-chartjs-2";
+import makeRequest from "../../../utils/makeRequest";
 
-import { Chart, registerables } from "chart.js";
-Chart.register(...registerables);
+import serverUrl from "../../../utils/config";
+
+let awaitingAcceptTicketCount = 0;
+let acceptedTicketCount = 0;
+let completedForRevisionTicketCount = 0;
+let completedTicketCount = 0;
+let terminatedTicketCount = 0;
+let refusedTicketCount = 0;
 
 type UserType = {
   user: IUser;
 };
 
-const TicketChart: React.FC = () => {
+type dataSetObject = {
+  label: string;
+  data: number[];
+  backgroundColor: string[];
+  borderColor: string[];
+  borderWidth: number;
+};
+
+type chartData = {
+  labels: string[];
+  datasets: dataSetObject[];
+};
+
+type chartOptions = {
+  scales: {
+    y: {
+      ticks: {
+        stepSize: number;
+      };
+    };
+  };
+};
+
+export const useStatistics = () => {
   const user = useSelector((state: UserType) => state.user);
+  const [ticketsPage, setTicketsPage] = useState<number>(1);
+  const [loading, setLoading] = useState(true);
 
   const ticketBorderColor = ["rgb(173, 202, 214)"];
 
-  const [data, setData] = useState<any>({
+  const [data, setData] = useState<chartData>({
     labels: ["Тикети"],
     datasets: [
       {
@@ -65,7 +94,7 @@ const TicketChart: React.FC = () => {
     ],
   });
 
-  const options: any = {
+  const options: chartOptions = {
     scales: {
       y: {
         ticks: {
@@ -76,9 +105,19 @@ const TicketChart: React.FC = () => {
   };
 
   useEffect(() => {
+    // So it resets the values on first render (if not they add up)
+    awaitingAcceptTicketCount = 0;
+    acceptedTicketCount = 0;
+    completedForRevisionTicketCount = 0;
+    completedTicketCount = 0;
+    terminatedTicketCount = 0;
+    refusedTicketCount = 0;
+  }, []);
+
+  useEffect(() => {
     const requestData = {
       nUser: user.nUser,
-      nPage: 1,
+      nPage: ticketsPage,
       nFilterType: 99,
     };
 
@@ -93,12 +132,15 @@ const TicketChart: React.FC = () => {
     };
 
     fetchTickets().then((result) => {
-      let awaitingAcceptTicketCount = 0;
-      let acceptedTicketCount = 0;
-      let completedForRevisionTicketCount = 0;
-      let completedTicketCount = 0;
-      let terminatedTicketCount = 0;
-      let refusedTicketCount = 0;
+      let ticketsPages = Math.ceil(result.brTickets / 10);
+
+      if (ticketsPage <= ticketsPages) {
+        setTicketsPage((prevState) => (prevState = prevState + 1));
+
+        if (ticketsPage === ticketsPages) {
+          setLoading(false);
+        }
+      }
 
       result.tickets.forEach((ticket) => {
         switch (ticket.ticketStatus) {
@@ -161,9 +203,7 @@ const TicketChart: React.FC = () => {
         ],
       });
     });
-  }, []);
+  }, [ticketsPage]);
 
-  return <Bar data={data} options={options} />;
+  return { data, options, loading };
 };
-
-export default TicketChart;

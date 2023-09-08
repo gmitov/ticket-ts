@@ -8,10 +8,10 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ResponsiveDialog from "../../helpers/ResponsiveDialog";
+import ResponsiveDialog from "../../../utils/ResponsiveDialog";
 
-import { returnStatusName } from "../../helpers/utils";
-import { showToast } from "../../helpers/showToast";
+import { returnStatusName } from "../../../utils/utils";
+import { showToast } from "../../../utils/showToast";
 
 import styles from "./TicketData.module.css";
 import ticketStyle from "./Ticket.module.css";

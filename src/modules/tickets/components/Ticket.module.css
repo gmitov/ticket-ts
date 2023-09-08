@@ -1,0 +1,44 @@
+.ticket {
+  margin-left: 15px;
+  margin-bottom: 10px;
+  flex-basis: 100%;
+
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+}
+
+.ticket-header {
+  height: 80%;
+}
+
+@media (max-width: 800px) {
+  .ticket {
+    margin-left: 0px;
+  }
+}
+
+.ticket-active {
+  background-color: #fff2b3;
+  border: 1px solid #ffd37b;
+}
+
+.ticket-finished {
+  background-color: #98e5c7;
+  border: 1px solid #74c4a1;
+}
+
+.ticket-terminated {
+  background-color: #ffc7c7;
+  border: 1px solid #ff9c9c;
+}
+
+.ticket-revision {
+  background-color: #cbf2c0;
+  border: 1px solid #9fd696;
+}
+
+.ticket-await-accept {
+  background-color: #dae5e8;
+  border: 1px solid #c2cacc;
+}
