@@ -6,10 +6,6 @@ import makeRequest from "../../../utils/makeRequest";
 
 import serverUrl from "../../../utils/config";
 
-type UserType = {
-  user: IUser;
-};
-
 type TicketType = {
   ticket: ITicketData;
 };

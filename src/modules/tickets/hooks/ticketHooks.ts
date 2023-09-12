@@ -5,20 +5,6 @@ import makeRequest from "../../../utils/makeRequest";
 
 import serverUrl from "../../../utils/config";
 
-type FilterType = {
-  ticketFilter: IFilter;
-};
-
-type UserType = {
-  user: IUser;
-};
-
-type ActivePageType = {
-  ticketFilter: {
-    activePage: number;
-  };
-};
-
 const ticketsInitialValue = [
   {
     EIK: "",

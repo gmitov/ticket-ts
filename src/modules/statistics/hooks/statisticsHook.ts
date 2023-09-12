@@ -12,10 +12,6 @@ let completedTicketCount = 0;
 let terminatedTicketCount = 0;
 let refusedTicketCount = 0;
 
-type UserType = {
-  user: IUser;
-};
-
 type dataSetObject = {
   label: string;
   data: number[];

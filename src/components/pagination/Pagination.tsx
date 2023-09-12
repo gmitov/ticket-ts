@@ -8,12 +8,6 @@ type PaginationProps = {
   pagesCount: number;
 };
 
-type ActivePageType = {
-  ticketFilter: {
-    activePage: number;
-  };
-};
-
 const PaginationTickets: React.FC<PaginationProps> = ({ pagesCount }) => {
   const dispatch = useAppDispatch();
 

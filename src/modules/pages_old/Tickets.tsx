@@ -1,27 +1,13 @@
 import { useEffect, useState, memo } from "react";
-import makeRequest from "../utils/makeRequest";
+import makeRequest from "../../utils/makeRequest";
 import { useSelector } from "react-redux";
-import serverUrl from "../utils/config";
-import TicketList from "../modules/tickets/components/TicketsList";
-import TicketFilter from "../modules/tickets/components/TicketFilter";
+import serverUrl from "../../utils/config";
+import TicketList from "../tickets/components/TicketsList";
+import TicketFilter from "../tickets/components/TicketFilter";
 import { Grid } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import PaginationTickets from "../components/pagination/Pagination";
-
-type FilterType = {
-  ticketFilter: IFilter;
-};
-
-type UserType = {
-  user: IUser;
-};
-
-type ActivePageType = {
-  ticketFilter: {
-    activePage: number;
-  };
-};
+import PaginationTickets from "../../components/pagination/Pagination";
 
 const Tickets: React.FC = memo(() => {
   const [tickets, setTickets] = useState<ITicket[] | null>(null);

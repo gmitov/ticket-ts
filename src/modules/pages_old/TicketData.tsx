@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import serverUrl from "../utils/config";
-import makeRequest from "../utils/makeRequest";
+import serverUrl from "../../utils/config";
+import makeRequest from "../../utils/makeRequest";
 
 import { useSelector } from "react-redux";
 // import TicketDataHeader from "../modules/statistics/components/TicketDataHeader";
@@ -10,10 +10,6 @@ import { useSelector } from "react-redux";
 // import TicketDataControls from "../modules/statistics/components/TicketDataControls";
 
 import styles from "../components/tickets/TicketWrapper.module.css";
-
-type UserType = {
-  user: IUser;
-};
 
 type TicketType = {
   ticket: ITicketData;

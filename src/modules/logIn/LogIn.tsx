@@ -11,8 +11,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-import { useAppDispatch } from "../store/store";
-import { loginUser } from "../features/userSlice";
+import { useAppDispatch } from "../../store/store";
+import { loginUser } from "../../features/userSlice";
 
 import { useNavigate } from "react-router-dom";
 

@@ -14,10 +14,6 @@ import { setTicketFilter, setActivePage } from "../../../features/ticketsSlice";
 
 import styles from "./TicketFilter.module.css";
 
-type FilterType = {
-  ticketFilter: IFilter;
-};
-
 const TicketFilter: React.FC = () => {
   const dispatch = useAppDispatch();
   const ticketFilterValue = useSelector(

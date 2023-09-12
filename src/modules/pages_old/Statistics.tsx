@@ -1,4 +1,4 @@
-import TicketChart from "../modules/statistics/components/TicketChart";
+import TicketChart from "../statistics/components/TicketChart";
 
 const Statistics: React.FC = () => {
   return (
