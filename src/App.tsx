@@ -1,13 +1,14 @@
 import RequireAuth from "./utils/RequireAth";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./modules/home/Home";
+
 import NotFound from "./modules/notFound/NotFound";
 import ResponsiveDrawer from "./components/navigation/ResponsiveDrawer";
-import UserProfile from "./modules/userProfile/UserProfile";
-import Statistics from "./modules/pages_old/Statistics";
-import LogIn from "./modules/logIn/LogIn";
 
+import { UserProfile } from "./modules/userProfile";
+import { LogIn } from "./modules/logIn";
+import { StatisticsPage } from "./modules/statistics";
+import { HomePage } from "./modules/home";
 import { TicketsPage } from "./modules/tickets";
 import { TicketDataPage } from "./modules/ticketData";
 
@@ -20,7 +21,7 @@ function App() {
           element={
             <RequireAuth>
               <ResponsiveDrawer>
-                <Home />
+                <HomePage />
               </ResponsiveDrawer>
             </RequireAuth>
           }
@@ -44,7 +45,7 @@ function App() {
           element={
             <RequireAuth>
               <ResponsiveDrawer>
-                <Statistics />
+                <StatisticsPage />
               </ResponsiveDrawer>
             </RequireAuth>
           }

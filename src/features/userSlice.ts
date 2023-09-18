@@ -56,9 +56,6 @@ export const userSlice = createSlice({
         localStorage.setItem("accToken", data.accToken);
         localStorage.setItem("refreshToken", data.refreshToken);
         localStorage.setItem("expTime", data.experesIn);
-      } else {
-        // wrong credentials
-        // localStorage.setItem("isAuthenticated", "false");
       }
     });
   },

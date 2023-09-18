@@ -9,7 +9,7 @@ import { CardActions } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Navigate } from "react-router-dom";
 
-const UserProfile: React.FC = () => {
+export const UserProfile: React.FC = () => {
   const user = useSelector((state: UserType) => state.user);
   const [isLogOutClicked, setIsLogOutClicked] = useState<boolean>(false);
 
@@ -47,5 +47,3 @@ const UserProfile: React.FC = () => {
     </>
   );
 };
-
-export default UserProfile;
